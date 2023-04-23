@@ -16,12 +16,14 @@ public class Mercado {
     private String id;
     private String nome;
     private String moeda;
-    private BigDecimal saldo;
+    private Double saldo;
+    private Double valor;
 
     public Mercado update(Mercado mercado) {
         this.setNome(mercado.nome);
         this.setMoeda(mercado.moeda);
         this.setSaldo(mercado.saldo);
+        this.setValor(mercado.valor);
         return this;
     }
 }

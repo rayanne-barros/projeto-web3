@@ -14,12 +14,14 @@ import java.math.BigDecimal;
 public class MercadoRequest {
     private String nome;
     private String moeda;
-    private BigDecimal saldo;
+    private Double saldo;
+    private Double valor;
 
     public Mercado update(Mercado mercado) {
         mercado.setNome(this.nome);
         mercado.setMoeda(this.moeda);
         mercado.setSaldo(this.saldo);
+        mercado.setValor(this.valor);
         return mercado;
     }
 
@@ -28,6 +30,7 @@ public class MercadoRequest {
         mercado.setNome(this.nome);
         mercado.setMoeda(this.moeda);
         mercado.setSaldo(this.saldo);
+        mercado.setValor(this.valor);
         return mercado;
     }
 }

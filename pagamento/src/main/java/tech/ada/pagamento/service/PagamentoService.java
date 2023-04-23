@@ -31,10 +31,11 @@ public class PagamentoService {
         usuarios.flatMap(u -> {
             log.error(u.getUsername() + " : " + u.getBalance());
             return null;
-        }).subscribe(u -> {
-            log.error(u.getUsername() + " : " + u.getBalance());
-            return null;
         });
+//                .subscribe(u -> {
+//            log.error(u.getUsername() + " : " + u.getBalance());
+//            return null;
+//        });
 
         Mono<Comprovante> comprovanteMono = Flux.zip(usuarios, usuarios.skip(1))
                 .map(tupla -> new Transacao(
