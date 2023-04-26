@@ -28,27 +28,25 @@ public class PagamentoService {
                         .build())
                 .retrieve().bodyToFlux(Usuario.class);
 
-        usuarios.flatMap(u -> {
-            log.error(u.getUsername() + " : " + u.getBalance());
-            return null;
-        });
-//                .subscribe(u -> {
-//            log.error(u.getUsername() + " : " + u.getBalance());
-//            return null;
-//        });
 
         Mono<Comprovante> comprovanteMono = Flux.zip(usuarios, usuarios.skip(1))
-                .map(tupla -> new Transacao(
-                        tupla.getT1().getUsername(),
-                        tupla.getT2().getUsername(),
-                        pagamento.getValor()))
+                .map(tupla -> {
+                            if(tupla.getT1().getBalance() < pagamento.getValor()){
+                                return null;
+                            }
+                            return new Transacao(
+                                    tupla.getT1().getUsername(),
+                                    tupla.getT2().getUsername(),
+                                    pagamento.getValor());
+                        }
+                )
                 .last()
                 .flatMap(tx -> transacaoRepository.save(tx))
-                .map(tx -> tx.getComprovate())
-                .flatMap(cmp -> {
+                .onErrorStop()
+                .map(tx -> tx.getComprovante())
+                .flatMap(cmp ->{
                     return salvar(cmp);
                 });
-
         return comprovanteMono;
     }
 
@@ -60,7 +58,6 @@ public class PagamentoService {
                         .build())
                 .bodyValue(cmp)
                 .retrieve().bodyToMono( Comprovante.class);
-
         return monoComprovante;
     }
 

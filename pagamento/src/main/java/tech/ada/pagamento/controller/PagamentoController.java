@@ -23,7 +23,8 @@ public class PagamentoController {
 
     @PostMapping
     public Mono<Comprovante> pagar(@RequestBody Pagamento pagamento) {
-        return service.pagar(pagamento);
+
+        return service.pagar(pagamento).onErrorResume(e -> Mono.error(new RuntimeException("Saldo Insuficiente")));
     }
 
 }

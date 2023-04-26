@@ -9,6 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import tech.ada.mercado.exception.NotFoundException;
 import tech.ada.mercado.model.Mercado;
+import tech.ada.mercado.model.Moeda;
 import tech.ada.mercado.service.MercadoService;
 
 @RestController
@@ -57,10 +58,10 @@ public class MercadoController {
 //                .switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
-    @GetMapping("/valor")
-    public Mono<ResponseEntity<Double>> pegaValorAtual() {
-        return service.pegarValor()
-                .map(valor -> ResponseEntity.ok(valor))
-                .switchIfEmpty(Mono.error(() -> new NotFoundException("Não encontrado")));
+
+    @GetMapping("/moeda")
+    public Mono<ResponseEntity<Flux<Moeda>>> consultaAPI(@RequestParam("moeda") String moeda){
+        return service.cotacao(moeda).collectList()
+                .map(m -> ResponseEntity.ok().body(Flux.fromIterable(m)));
     }
 }

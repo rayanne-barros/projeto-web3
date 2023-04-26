@@ -29,7 +29,7 @@ public class Transacao {
         this.data = LocalDateTime.now();
     }
 
-    public Comprovante getComprovate() {
+    public Comprovante getComprovante() {
         Comprovante comprovante = new Comprovante();
         comprovante.setId(this.id);
         comprovante.setPagador(this.pagador);

@@ -48,4 +48,15 @@ public class MercadoService {
                 .map(list -> ((List<Moeda>)list).get(0).getHigh());
     }
 
+    public Flux<Moeda> cotacao(String moeda) {
+
+        WebClient webClient = WebClient.create("https://economia.awesomeapi.com.br");
+        Flux<Moeda> cotacao = webClient.get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/" + moeda +"/")
+                        .build())
+                .retrieve().bodyToFlux(Moeda.class);
+        return cotacao;
+    }
+
 }
