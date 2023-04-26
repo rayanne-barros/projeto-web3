@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-webflux/ada-966-webflux.iml" filepath="$PROJECT_DIR$/spring-webflux/ada-966-webflux.iml" />
       <module fileurl="file://$PROJECT_DIR$/mercado/mercado.iml" filepath="$PROJECT_DIR$/mercado/mercado.iml" />
       <module fileurl="file://$PROJECT_DIR$/pagamento/pagamento.iml" filepath="$PROJECT_DIR$/pagamento/pagamento.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projeto-web3.iml" filepath="$PROJECT_DIR$/.idea/projeto-web3.iml" />

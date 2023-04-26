@@ -6,6 +6,7 @@
         <option value="$PROJECT_DIR$/mercado/pom.xml" />
         <option value="$PROJECT_DIR$/pagamento/pom.xml" />
         <option value="$PROJECT_DIR$/spring-gateway-zuul/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-webflux/pom.xml" />
       </list>
     </option>
   </component>
