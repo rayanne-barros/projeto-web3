@@ -11,12 +11,15 @@
         <module name="pagamento" />
         <module name="ada-966-webflux" />
         <module name="mercado" />
+        <module name="service-registry" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="ada-966-webflux" target="17" />
       <module name="mercado" target="17" />
       <module name="pagamento" target="17" />
+      <module name="pix-service-registry" target="17" />
+      <module name="service-registry" target="17" />
       <module name="spring-gateway-zuul" target="11" />
     </bytecodeTargetLevel>
   </component>
@@ -25,6 +28,8 @@
       <module name="ada-966-webflux" options="-parameters" />
       <module name="mercado" options="-parameters" />
       <module name="pagamento" options="-parameters" />
+      <module name="pix-service-registry" options="-parameters" />
+      <module name="service-registry" options="-parameters" />
       <module name="spring-gateway-zuul" options="-parameters" />
     </option>
   </component>

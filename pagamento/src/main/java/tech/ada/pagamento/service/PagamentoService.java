@@ -31,13 +31,14 @@ public class PagamentoService {
 
         Mono<Comprovante> comprovanteMono = Flux.zip(usuarios, usuarios.skip(1))
                 .map(tupla -> {
-                            if(tupla.getT1().getBalance() < pagamento.getValor()){
-                                Mono.error(new RuntimeException("Saldo Insuficiente!"));
-                            }
-                            return new Transacao(
-                                    tupla.getT1().getUsername(),
-                                    tupla.getT2().getUsername(),
-                                    pagamento.getValor());
+                    if (tupla.getT1().getBalance() < pagamento.getValor()) {
+                        Mono.error(new RuntimeException("Saldo Insuficiente!"));
+                    } else if (tupla.getT2().getBalance() < pagamento.getValor()) {
+                        Mono.error(new RuntimeException("Saldo Insuficiente!"));
+                    }   return new Transacao(
+                            tupla.getT1().getUsername(),
+                            tupla.getT2().getUsername(),
+                            pagamento.getValor());
                         }
                 )
                 .last()

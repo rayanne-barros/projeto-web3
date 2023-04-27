@@ -40,14 +40,6 @@ public class MercadoService {
                 .flatMap(atual -> repository.save(atual.update(mercado)));
     }
 
-    public Mono<Double> pegarValor() {
-        WebClient webClient = WebClient.create("https://economia.awesomeapi.com.br/USD/");
-        return webClient.get()
-                .retrieve()
-                .bodyToMono(List.class)
-                .map(list -> ((List<Moeda>)list).get(0).getHigh());
-    }
-
     public Flux<Moeda> cotacao(String moeda) {
 
         WebClient webClient = WebClient.create("https://economia.awesomeapi.com.br");
